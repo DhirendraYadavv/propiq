@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: propiq-postgres
+    environment:
+      POSTGRES_DB: propiq
+      POSTGRES_USER: propiq_user
+      POSTGRES_PASSWORD: propiq_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: propiq-redis
+    ports:
+      - "6379:6379"
+
+  mongodb:
+    image: mongo:7
+    container_name: propiq-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: propiq_user
+      MONGO_INITDB_ROOT_PASSWORD: propiq_pass
+      MONGO_INITDB_DATABASE: propiq_tickets
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  postgres_data:
+  mongo_data:
