@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd ~/propiq
-            git pull origin master
+            git pull origin master --rebase
             cd frontend
             npm run build
             sudo rm -rf /var/www/html/*
