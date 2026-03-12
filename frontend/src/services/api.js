@@ -1,6 +1,6 @@
-﻿import axios from "axios";
+import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:8080" });
+const API = axios.create({ baseURL: "http://3.6.88.245:8080" });
 
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
@@ -50,5 +50,5 @@ export const rentAPI = {
 
 export const propbotAPI = {
   chat: (message) =>
-    axios.post("http://localhost:8000/chat", { message }),
+    axios.post("http://3.6.88.245:8000/chat", { message }),
 };
