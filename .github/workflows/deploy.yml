@@ -18,7 +18,8 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd ~/propiq
-            git pull origin master --rebase
+            git fetch origin master
+            git reset --hard origin/master
             cd frontend
             npm run build
             sudo rm -rf /var/www/html/*
@@ -27,4 +28,7 @@ jobs:
             cd ~/propiq/backend
             ./mvnw clean package -DskipTests
             pkill -f "backend-0.0.1" || true
-            nohup java -jar target/backend-0.0.1-SNAPSHOT.jar &
+            sleep 2
+            nohup java -jar target/backend-0.0.1-SNAPSHOT.jar > /tmp/backend.log 2>&1 &
+            disown
+            echo "Deploy complete"
