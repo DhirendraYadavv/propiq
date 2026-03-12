@@ -20,12 +20,13 @@ jobs:
             cd ~/propiq
             git fetch origin master
             git reset --hard origin/master
-            cd frontend
+            cd ~/propiq/frontend
             npm run build
             sudo rm -rf /var/www/html/*
             sudo cp -r dist/* /var/www/html/
             sudo systemctl restart nginx
             cd ~/propiq/backend
+            chmod +x mvnw
             ./mvnw clean package -DskipTests
             pkill -f "backend-0.0.1" || true
             sleep 2
