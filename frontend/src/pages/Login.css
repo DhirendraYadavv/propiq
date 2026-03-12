@@ -1,0 +1,15 @@
+﻿.login-page {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 20% 50%, #7c6af710 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, #56cfb210 0%, transparent 60%);
+}
+
+.login-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px; width: 100%; max-width: 400px;
+}
+
+.login-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.login-logo h1 { font-size: 26px; font-weight: 700; letter-spacing: -1px; }
+.login-sub { color: var(--text2); font-size: 14px; margin-bottom: 32px; }

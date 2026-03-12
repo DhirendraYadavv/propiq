@@ -1,0 +1,9 @@
+﻿.prop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.prop-card { display: flex; flex-direction: column; gap: 10px; }
+.prop-card-header { display: flex; justify-content: space-between; align-items: center; }
+.prop-icon { width: 36px; height: 36px; border-radius: 8px; background: #7c6af720; color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.prop-name { font-size: 16px; font-weight: 600; }
+.prop-address { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text2); }
+.prop-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.prop-rent { font-size: 20px; font-weight: 700; color: var(--accent2); letter-spacing: -0.5px; }
+.prop-rent span { font-size: 13px; color: var(--text2); font-weight: 400; }
