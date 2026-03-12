@@ -1,0 +1,104 @@
+﻿INDIAN RENTAL AND TENANCY LAW KNOWLEDGE BASE
+
+=== MODEL TENANCY ACT 2021 ===
+The Model Tenancy Act 2021 was introduced by the Indian government to regulate the rental housing market.
+Key provisions:
+- Security deposit capped at 2 months rent for residential and 6 months for commercial properties
+- Landlord must provide rent receipt for all payments
+- Written rent agreement mandatory for all tenancies
+- Landlord cannot cut essential services like water and electricity
+- 24 hours notice required before landlord entry except emergency
+- Tenant must pay rent by 5th of each month unless agreed otherwise
+- Sub-letting requires written permission from landlord
+
+=== RENT INCREASE RULES ===
+- Rent can only be increased as per terms in the agreement
+- Minimum 3 months advance notice required for rent increase
+- Annual rent increase cannot exceed 5-10% depending on state
+- Rent increase during fixed term not allowed without consent
+- Market rate revision allowed only after lease expiry
+
+=== SECURITY DEPOSIT RULES ===
+- Maximum security deposit: 2 months rent for residential properties
+- Security deposit must be returned within 30 days of vacating
+- Landlord can deduct for actual damages beyond normal wear and tear
+- Interest on security deposit: some states require 4-6% per annum
+- Receipt mandatory when collecting security deposit
+
+=== EVICTION RULES ===
+- Landlord cannot evict without proper notice period
+- Notice period: minimum 1 month for monthly tenancy
+- Notice period: minimum 3 months for annual tenancy
+- Valid grounds for eviction: non-payment, subletting without permission, property damage
+- Forceful eviction is illegal - must go through Rent Authority
+- Tenant can challenge eviction notice within 30 days
+
+=== TDS ON RENT - SECTION 194-IB ===
+- TDS applicable when monthly rent exceeds Rs 50,000
+- TDS rate: 2% on rent amount (reduced from 5% from Oct 2024)
+- TDS to be deducted in last month of tenancy or March
+- TAN not required for individual/HUF landlords
+- Form 26QC to be filed within 30 days of TDS deduction
+- Tenant must issue Form 16C to landlord within 15 days
+- Non-deduction penalty: equal to TDS amount
+- PAN of landlord mandatory for TDS compliance
+
+=== LATE PAYMENT RULES ===
+- Late fee chargeable after grace period (usually 5-10 days)
+- Maximum late fee: 1-2% per month on outstanding amount
+- Compound interest on late fees not allowed
+- Late payment notice must be given in writing
+- Consistent late payment (3+ months) is valid eviction ground
+
+=== LEASE AGREEMENT ESSENTIALS ===
+- Names and addresses of landlord and tenant
+- Property description and address
+- Monthly rent amount and due date
+- Security deposit amount
+- Lease start and end date
+- Notice period for termination
+- Maintenance responsibilities
+- Pet and modification policies
+- Registered lease mandatory for leases over 11 months
+- Stamp duty applicable on lease registration
+
+=== STATE-SPECIFIC RULES ===
+Karnataka:
+- Karnataka Rent Control Act applies to properties below Rs 3500/month rent
+- Security deposit maximum: 10 months rent in some cases
+- Rent increase: 5% per annum
+
+Maharashtra:
+- Maharashtra Rent Control Act 1999
+- Security deposit: negotiable, typically 2-3 months
+- Mumbai: high security deposits up to 12 months common but not legally required
+
+Delhi:
+- Delhi Rent Control Act 1958 (properties below Rs 3500/month)
+- Rent increase: 10% every 3 years for controlled properties
+
+Tamil Nadu:
+- Tamil Nadu Regulation of Rights and Responsibilities of Landlords and Tenants Act 2017
+- Security deposit: 5% of property value or negotiated amount
+
+=== MAINTENANCE RESPONSIBILITIES ===
+Landlord responsibilities:
+- Structural repairs (walls, roof, foundation)
+- Major plumbing and electrical work
+- Pest control for major infestations
+- Common area maintenance
+
+Tenant responsibilities:
+- Minor repairs under Rs 1000-5000 (as per agreement)
+- Keeping property clean
+- Minor plumbing like tap washers
+- Garden maintenance if applicable
+- Restoring property to original condition at end of lease
+
+=== DISPUTE RESOLUTION ===
+- Rent Authority: first point of contact for disputes
+- Notice to Rent Authority must be filed within prescribed time
+- Alternative: consumer forum for service-related issues
+- Civil court for property damage claims above threshold
+- Mediation encouraged before litigation
+- Online dispute resolution available in some states
