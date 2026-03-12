@@ -16,20 +16,17 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
+          request_pty: true
           script: |
             cd ~/propiq
             git fetch origin master
             git reset --hard origin/master
             cd ~/propiq/frontend
             npm run build
-            sudo rm -rf /var/www/html/*
             sudo cp -r dist/* /var/www/html/
             sudo systemctl restart nginx
             cd ~/propiq/backend
             chmod +x mvnw
             ./mvnw clean package -DskipTests
-            pkill -f "backend-0.0.1" || true
-            sleep 2
-            nohup java -jar target/backend-0.0.1-SNAPSHOT.jar > /tmp/backend.log 2>&1 &
-            disown
+            sudo systemctl restart propiq
             echo "Deploy complete"
