@@ -1,53 +1,42 @@
 package com.propiq.backend.entity;
 
-import com.propiq.backend.enums.AuthProvider;
-import com.propiq.backend.enums.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tenants")
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class User {
+public class Tenant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-    @JsonIgnore
-    @Column(name = "password_hash")
-    private String passwordHash;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "profile_picture_url")
-    private String profilePictureUrl;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
+    private String phone;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    @Builder.Default
-    private AuthProvider provider = AuthProvider.LOCAL;
+    @Column(name = "aadhaar_number")
+    private String aadhaarNumber;
 
-    @Column(name = "provider_id")
-    private String providerId;
+    @Column(name = "pan_number")
+    private String panNumber;
 
-    @Column(name = "email_verified")
-    @Builder.Default
-    private Boolean emailVerified = false;
+    @Column(name = "emergency_contact")
+    private String emergencyContact;
 
     @Column(name = "is_active")
     @Builder.Default
