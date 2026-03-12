@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { X, Send, Bot, Loader } from "lucide-react";
 import "./PropBot.css";
 
-const API = "http://localhost:8000";
+const API = "http://15.207.159.218:8000";
 
 export default function PropBot() {
   const [open, setOpen] = useState(false);

@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import PropBot from "../components/PropBot";
 import { Building2, Users, FileText, Home } from "lucide-react";
 
-const API = "http://localhost:8080";
+const API = "http://15.207.159.218:8080";
 
 export default function Dashboard() {
   const { token } = useAuth();

@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import Sidebar from "../components/Sidebar";
 import PropBot from "../components/PropBot";
 
-const API = "http://localhost:8080";
+const API = "http://15.207.159.218:8080";
 
 export default function Tenants() {
   const { token } = useAuth();
