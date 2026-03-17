@@ -6,6 +6,40 @@ import { Building2, Users, FileText, Home, TrendingUp } from "lucide-react";
 
 const API = "http://localhost:8080";
 
+function calcScore(property, leases, payments) {
+  let score = 100;
+  const reasons = [];
+
+  if (property.status !== "OCCUPIED") {
+    score -= 30;
+    reasons.push("❌ Property is vacant (-30)");
+  } else {
+    reasons.push("✅ Property is occupied");
+  }
+
+  const propLeases = leases.filter(l => l.propertyId === property.id && l.status === "ACTIVE");
+  if (propLeases.length === 0) {
+    score -= 20;
+    reasons.push("❌ No active lease (-20)");
+  } else {
+    reasons.push("✅ Active lease exists");
+  }
+
+  const today = new Date();
+  propLeases.forEach(l => {
+    const end = new Date(l.endDate);
+    const daysLeft = Math.floor((end - today) / (1000 * 60 * 60 * 24));
+    if (daysLeft < 30) {
+      score -= 15;
+      reasons.push(`⚠️ Lease expiring in ${daysLeft} days (-15)`);
+    } else {
+      reasons.push(`✅ Lease valid for ${daysLeft} more days`);
+    }
+  });
+
+  return { score: Math.max(0, score), reasons };
+}
+
 function HealthScore({ score }) {
   const color = score >= 75 ? "#10b981" : score >= 50 ? "#f59e0b" : "#ef4444";
   const label = score >= 75 ? "Healthy" : score >= 50 ? "Average" : "At Risk";
@@ -23,25 +57,6 @@ function HealthScore({ score }) {
       <span style={{ color, fontSize: 12, fontWeight: 600 }}>{label}</span>
     </div>
   );
-}
-
-function calcScore(property, leases, payments) {
-  let score = 100;
-  if (property.status !== "OCCUPIED") score -= 30;
-  const propLeases = leases.filter(l => l.propertyId === property.id && l.status === "ACTIVE");
-  if (propLeases.length === 0) score -= 20;
-  propLeases.forEach(l => {
-    const paid = payments.filter(p => p.leaseId === l.id && p.status === "PAID").length;
-    const total = payments.filter(p => p.leaseId === l.id).length;
-    if (total > 0 && paid / total < 0.8) score -= 20;
-  });
-  const today = new Date();
-  propLeases.forEach(l => {
-    const end = new Date(l.endDate);
-    const daysLeft = (end - today) / (1000 * 60 * 60 * 24);
-    if (daysLeft < 30) score -= 15;
-  });
-  return Math.max(0, score);
 }
 
 export default function Dashboard() {
@@ -102,18 +117,30 @@ export default function Dashboard() {
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
               <TrendingUp size={18} color="#6366f1" />
               <h2 style={{ color: "white", fontSize: 18, fontWeight: 600, margin: 0 }}>Property Health Score</h2>
-              <span style={{ color: "#6b7280", fontSize: 13, marginLeft: 4 }}>AI-powered performance rating</span>
+              <span style={{ color: "#6b7280", fontSize: 13, marginLeft: 4 }}>AI-powered performance rating · hover to see breakdown</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 20 }}>
               {properties.map(p => {
-                const score = calcScore(p, leases, payments);
+                const { score, reasons } = calcScore(p, leases, payments);
                 return (
-                  <div key={p.id} style={{ background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 12, padding: 20, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+                  <div key={p.id}
+                    title={reasons.join("\n")}
+                    style={{
+                      background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 12,
+                      padding: 20, display: "flex", flexDirection: "column", alignItems: "center",
+                      gap: 12, cursor: "help"
+                    }}>
                     <HealthScore score={score} />
                     <div style={{ textAlign: "center" }}>
                       <div style={{ color: "white", fontWeight: 600, fontSize: 14 }}>{p.name}</div>
                       <div style={{ color: "#6b7280", fontSize: 12, marginTop: 2 }}>{p.address}</div>
                       <div style={{ color: "#9ca3af", fontSize: 12, marginTop: 4 }}>Rs {p.monthlyRent?.toLocaleString()}/mo</div>
+                    </div>
+                    {/* Score breakdown shown below card */}
+                    <div style={{ width: "100%", borderTop: "1px solid #1e1e1e", paddingTop: 10 }}>
+                      {reasons.map((r, i) => (
+                        <div key={i} style={{ color: "#9ca3af", fontSize: 11, marginBottom: 4, lineHeight: 1.4 }}>{r}</div>
+                      ))}
                     </div>
                   </div>
                 );
