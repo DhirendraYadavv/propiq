@@ -2,12 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { X, Send, Bot, Loader } from "lucide-react";
 import "./PropBot.css";
 
-const API = "http://15.207.159.218:8000";
-
 export default function PropBot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "bot", text: "Hi! I am PropBot. Ask me anything about Indian rental law - TDS, security deposits, eviction rules, lease agreements." }
+    { role: "bot", text: "Hi! I am PropBot. Ask me anything about your properties or Indian rental law - TDS, security deposits, eviction rules, lease agreements." }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,10 +20,11 @@ export default function PropBot() {
     setMessages((m) => [...m, { role: "user", text: userMsg }]);
     setLoading(true);
     try {
-      const res = await fetch(`${API}/chat`, {
+      const token = localStorage.getItem("token") || "";
+      const res = await fetch(`http://localhost:8000/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg })
+        body: JSON.stringify({ message: userMsg, token })
       });
       const data = await res.json();
       setMessages((m) => [...m, { role: "bot", text: data.reply }]);
@@ -40,7 +39,6 @@ export default function PropBot() {
 
   return (
     <>
-      {/* Floating button */}
       {!open && (
         <button onClick={() => setOpen(true)} style={{
           position: "fixed", bottom: 24, right: 24, background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
@@ -52,7 +50,6 @@ export default function PropBot() {
         </button>
       )}
 
-      {/* Chat window */}
       {open && (
         <div style={{
           position: "fixed", bottom: 24, right: 24, width: 380, height: 500,
@@ -60,7 +57,6 @@ export default function PropBot() {
           display: "flex", flexDirection: "column", zIndex: 1000,
           boxShadow: "0 8px 32px rgba(0,0,0,0.5)"
         }}>
-          {/* Header */}
           <div style={{ padding: "16px 20px", borderBottom: "1px solid #222", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#6366f1", fontWeight: 600 }}>
               <Bot size={18} /> PropBot AI
@@ -70,7 +66,6 @@ export default function PropBot() {
             </button>
           </div>
 
-          {/* Messages */}
           <div style={{ flex: 1, overflowY: "auto", padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
             {messages.map((m, i) => (
               <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start" }}>
@@ -91,13 +86,12 @@ export default function PropBot() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
           <div style={{ padding: "12px 16px", borderTop: "1px solid #222", display: "flex", gap: 8 }}>
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Ask about TDS, deposits, eviction..."
+              placeholder="Ask about your properties, TDS, deposits..."
               style={{ flex: 1, background: "#1a1a1a", border: "1px solid #333", borderRadius: 8, padding: "10px 14px", color: "white", fontSize: 14, outline: "none" }}
               autoFocus
             />
